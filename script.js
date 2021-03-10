@@ -1,17 +1,26 @@
+// Creates a JS variable tied to the field
 const fieldTile = document.querySelector('.fieldTile');
+let fieldValue = 16;
+let color = "black";
 
 function setField(value) {
-    fieldTile.style.background = "#ff0000";
     const fieldSize = value * value;
 
+    document.getElementById("fieldValue").innerHTML = fieldValue;
+
     for (i = 0; i < fieldSize; i++) {
-        const tile = document.createElement('tile');
-        tile.setAttribute('class', 'tile');
-        fieldTile.appendChild(tile);
+        const makeTile = document.createElement('tile');
+        makeTile.setAttribute('class', 'tile');
+        makeTile.addEventListener('mouseenter', canDraw)
+        fieldTile.appendChild(makeTile);
     }
 
     fieldTile.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
     fieldTile.style.gridTemplateRows = `repeat(${value}, 1fr)`;
 }
 
-window.addEventListener("load", setField(6));
+function canDraw() {
+    this.style.backgroundColor = color;
+}
+
+window.addEventListener("load", setField(fieldValue));
