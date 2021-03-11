@@ -1,5 +1,5 @@
 html, body {
-    background: #454545;
+    background: #3f3f3f;
     color: #ffffff;
     margin: auto;
     padding-top: 1%;
@@ -27,19 +27,40 @@ body {
 }
 
 .buttonBox {
-    background: rgb(16, 16, 121);
     grid-row-start: 2;
     margin: auto;
 }
 
 .button {
     display: flex;
-    padding: 4px;
-    border: #2c2c2c;
-    border-width: 1px;
+    background-color:#222222;
+    justify-content: center;
+    padding: 12px;
+    border: #4b4b4b;
+    border-width: 2px;
     border-style: solid;
-    box-shadow: 2px 2px 5px red;
+    border-radius: 5px;
     margin: 10px;
+}
+
+.button:hover {
+    box-shadow: 0px 0px 5px white;
+}
+
+.dangerButton {
+    display: flex;
+    background-color: #bc0a0a;
+    justify-content: center;
+    padding: 4px;
+    border: #cc0a0a;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.buttonPressed {
+    box-shadow: 0px 0px 5px white;
 }
 
 .fieldTile {
