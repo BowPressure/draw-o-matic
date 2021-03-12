@@ -1,9 +1,12 @@
 // Creates a JS variable tied to the field
 const fieldTile = document.querySelector('.fieldTile');
 const button = document.querySelector('.button');
-const clearButton = document.querySelector('#clearButton');
+const colorButton = document.querySelectorAll('.colorButton');
+const rainbowColors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3"];
+let rainbowSelection = 6;
 let fieldValue = 16;
 let color = "black";
+let daVinci = 0;
 
 function setField(value) {
     const fieldSize = value * value;
@@ -22,7 +25,30 @@ function setField(value) {
 }
 
 function canDraw() {
-    this.style.backgroundColor = color;
+    switch(color) {
+        case "black":
+            this.style.backgroundColor = "black";
+            break;
+        case "rainbow":
+            if (rainbowSelection > 5) {
+                rainbowSelection = 0;
+            } else {
+                rainbowSelection += 1;
+            }
+            this.style.backgroundColor = rainbowColors[rainbowSelection];
+            break;
+        case "random":
+            this.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            break;
+        case "eraser":
+            this.style.backgroundColor = "white";
+            break;
+    }
+
+    if (daVinci == 1) {
+        alert("WOOOAAAH! Move over DaVinci, there's a new genius in town!");
+        daVinci = 0;
+    } else {}
 }
 
 function clearField() {
@@ -56,9 +82,33 @@ function resizeField() {
 
         setField(fieldValue);
 
+        if (fieldValue == 1) {
+            daVinci = 1;
+        } else {
+            daVinci = 0;
+        }
+
+    }
+}
+
+function changeColor(event) {
+    switch(event.target.id) {
+        case "black":
+            color = "black";
+            break;
+        case "rainbow":
+            color = "rainbow";
+            break;
+        case "random":
+            color = "random";
+            break;
+        case "eraser":
+            color = "eraser";
+            break;
     }
 }
 
 window.addEventListener("load", setField(fieldValue));
+colorButton.forEach(colorButton => colorButton.addEventListener('click', changeColor));
 sizeButton.addEventListener("click", resizeField);
 clearButton.addEventListener("click", clearField);
