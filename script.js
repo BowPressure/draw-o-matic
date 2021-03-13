@@ -49,7 +49,7 @@ function canDraw() {
             break;
    }
 
-   if (daVinci == 1) {
+   if (daVinci == 1 && color != "eraser") {
         alert("WOOOAAAH! Move over da Vinci, there's a new genius in town!");
         daVinci = 0;
     }
