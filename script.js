@@ -3,6 +3,7 @@ const fieldTile = document.querySelector('.fieldTile');
 const button = document.querySelector('.button');
 const colorButton = document.querySelectorAll('.colorButton');
 const rainbowColors = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3"];
+const colorInput = document.querySelector('#colorInput');
 let rainbowSelection = 6;
 let fieldValue = 16;
 let color = "black";
@@ -27,7 +28,7 @@ function setField(value) {
 function canDraw() {
     switch(color) {
         case "black":
-            this.style.backgroundColor = "black";
+            this.style.backgroundColor = "#000000";
             break;
         case "rainbow":
             if (rainbowSelection > 5) {
@@ -40,15 +41,19 @@ function canDraw() {
         case "random":
             this.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
             break;
-        case "eraser":
-            this.style.backgroundColor = "white";
+        case "choose":
+            this.style.backgroundColor = colorInput.value;
             break;
+        case "eraser":
+            this.style.backgroundColor = "#FFFFFF";
+            break;
+   }
+
+   if (daVinci == 1) {
+        alert("WOOOAAAH! Move over da Vinci, there's a new genius in town!");
+        daVinci = 0;
     }
 
-    if (daVinci == 1) {
-        alert("WOOOAAAH! Move over DaVinci, there's a new genius in town!");
-        daVinci = 0;
-    } else {}
 }
 
 function clearField() {
@@ -101,6 +106,9 @@ function changeColor(event) {
             break;
         case "random":
             color = "random";
+            break;
+        case "choose":
+            color = "choose";
             break;
         case "eraser":
             color = "eraser";
